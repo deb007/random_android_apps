@@ -1,0 +1,19 @@
+--- 
+applications: 
+  .: 
+    name: RandomAndroidApps
+    framework: 
+      name: rails3
+      info: 
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: ap-aws
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 1
+    services: 
+      appz-mysql-1670: 
+        type: mysql
+      mysql-45f65: 
+        type: mysql
