@@ -1,0 +1,229 @@
+<%
+%>
+<!DOCTYPE  html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title><%= Rails.application.class.parent_name %> - Trends for all the free Android apps in Google Play</title>
+		  <%= stylesheet_link_tag    "style", "social-icons", :media => "all" %>
+		  <%= javascript_include_tag "jquery-1.5.1.min", "jquery-ui-1.8.13.custom.min", "easing", "jquery.scrollTo-1.4.2-min", "quicksand", "jquery.cycle.all", "custom" %>
+
+		  <% if @include_nivo_slider %>
+		  	<%= stylesheet_link_tag    "nivo-slider", :media => "all" %>
+		  	<%= javascript_include_tag "nivo-slider/jquery.nivo.slider" %>
+		  <% end %>
+
+		  <% if @include_tabs %>
+		  	<%= stylesheet_link_tag    "tabs", :media => "all" %>
+		  	<%= javascript_include_tag "tabs" %>
+		  <% end %>
+
+		  <% if @include_pretty_photo %>
+		  	<%= stylesheet_link_tag    "/javascripts/prettyPhoto/css/prettyPhoto", :media => "all" %>
+		  	<%= javascript_include_tag "prettyPhoto/js/jquery.prettyPhoto" %>
+		  <% end %>
+
+		  <% if @include_superfish %>
+		  	<%= stylesheet_link_tag    "superfish", :media => "all" %>
+		  	<%= javascript_include_tag "superfish-1.4.8/js/hoverIntent.js", "superfish-1.4.8/js/superfish.js", "superfish-1.4.8/js/supersubs.js" %>
+		  <% end %>
+
+		  <% if @include_poshytip %>
+		  	<%= stylesheet_link_tag    "/javascripts/poshytip-1.0/src/tip-yellowsimple/tip-yellowsimple", "/javascripts/poshytip-1.0/src/tip-twitter/tip-twitter", :media => "all" %>
+		  	<%= javascript_include_tag "poshytip-1.0/src/jquery.poshytip.min" %>
+		  <% end %>
+
+		  <% if @include_tweet %>
+		  	<%#= stylesheet_link_tag    "/javascripts/tweet/index", :media => "all" %>
+		  	<%= javascript_include_tag "tweet/jquery.tweet" %>
+		  <% end %>
+
+		  <% if @include_fancybox %>
+		  	<%= stylesheet_link_tag    "/javascripts/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css", :media => "all" %>
+		  	<%= javascript_include_tag "jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js" %>
+		  <% end %>
+
+		  <% if @include_skin %>
+		  	<%= stylesheet_link_tag    "skins/"+@include_skin+"/style", :media => "all" %>
+		  <% end %>
+
+		  <%#= csrf_meta_tags %>
+
+		<!--[if IE 8]>
+			<link rel="stylesheet" type="text/css" media="screen" href="/css/ie8-hacks.css" />
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if IE 6]>
+			<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+			<script>
+	      		/* EXAMPLE */
+	      		//DD_belatedPNG.fix('*');
+	    	</script>
+		<![endif]-->
+		<!-- ENDS JS -->
+
+
+		<!-- GOOGLE FONTS -->
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body>
+
+
+	<!-- WRAPPER -->
+	<div id="wrapper">
+
+		<!-- HEADER -->
+		<div id="header">
+			<a href="/"><div id="logo" style="color:white;text-decoration:none;font-size:32px;"><%= Rails.application.class.parent_name %></div></a>
+			<!-- Social -->
+			<!--
+			<div id="social-holder">
+				<ul class="social">
+					<li><a href="http://www.facebook.com" class="poshytip facebook" title="Become a fan"></a></li>
+					<li><a href="http://www.twitter.com" class="poshytip twitter" title="Follow our tweets"></a></li>
+					<li><a href="http://www.dribbble.com" class="poshytip dribbble" title="View our work"></a></li>
+					<li><a href="http://www.addthis.com" class="poshytip addthis" title="Tell everybody"></a></li>
+					<li><a href="http://www.vimeo.com" class="poshytip vimeo" title="View our videos"></a></li>
+					<li><a href="http://www.youtube.com" class="poshytip youtube" title="View our videos"></a></li>
+				</ul>
+			</div> -->
+			<!-- ENDS Social -->
+
+			<!-- Navigation -->
+			<ul id="nav" class="sf-menu">
+				<li <% if @homepage %>
+						<%= "class='current-menu-item'" %>
+					<% end %>><%= link_to "Home", root_url %></li>
+				<li><%= link_to "Games", category_path("games") %>
+					<ul>
+						<% @game_cat.each {|c| %>
+							<li><%= link_to "<span>#{c.category_name}</span>".html_safe, category_path(c.category_id.downcase) %></li>
+						<% } %>
+					</ul></li>
+				<li><%= link_to "Applications", category_path("apps") %>
+					<ul>
+						<% @app_cat.each {|c| %>
+							<li><%= link_to "<span>#{c.category_name}</span>".html_safe, category_path(c.category_id.downcase) %></li>
+						<% } %>
+					</ul></li>
+				<!-- <li><%= link_to "Top Free", categories_path("free") %></li>
+				<li><%= link_to "Top New Free", categories_path("newfree") %></li>
+				<li><a href="/contact">Contact Us</a></li> -->
+			</ul>
+			<!-- Navigation -->
+
+			<!-- search -->
+			<!-- <div class="top-search">
+				<form  method="get" id="searchform" action="#">
+					<div>
+						<input type="text" value="Search..." name="s" id="s" onfocus="defaultInput(this)" onblur="clearInput(this)" />
+						<input type="submit" id="searchsubmit" value=" " />
+					</div>
+				</form>
+			</div> -->
+			<!-- ENDS search -->
+
+			<% if @breadcrumb %>
+			<!-- Breadcrumb-->
+			<div id="breadcrumbs">
+				<% @breadcrumb.each {|crumb| %>
+					<% strcrumb = crumb.split('|') %>
+					<% if strcrumb[1] %><%= link_to strcrumb[0], strcrumb[1] %><% else %><%= strcrumb[0].chomp.to_s %><% end %>
+				<% } %>
+			</div>
+			<!-- ENDS Breadcrumb-->
+			<% end %>
+
+		</div>
+		<!-- ENDS HEADER -->
+
+		<!-- MAIN -->
+		<div id="main">
+
+			<!-- content -->
+			<div id="content">
+
+				<!-- title -->
+				<div id="page-title">
+					<span class="title"><%= @page_title %></span>
+					<span class="subtitle"><%= @page_subtitle %></span>
+				</div>
+				<!-- ENDS title -->
+				<%= render :partial => "layouts/adsense"  %>
+				<!-- page-content -->
+					<%= yield %>
+				<!-- ENDS page-content -->
+
+				<div id="page-content">
+					
+					<div>
+					<h4 class="line-divider"><center><%= link_to "Reload this page", "javascript:location.reload();" %> to receive more free random android apps</center></h4>
+		        	</div>
+
+				</div>
+				<%= render :partial => "layouts/adsense"  %>
+				<br><br>
+
+
+			</div>
+			<!-- ENDS content -->
+
+
+		</div>
+		<!-- ENDS MAIN -->
+
+		<!-- FOOTER -->
+		<div id="footer">
+
+			<!-- footer-cols -->
+			<ul id="footer-cols">
+				<li class="col">
+					<h6>Games</h6>
+					<ul>
+						<% @game_cat.each {|c| %>
+							<li><%= link_to "<span>#{c.category_name}</span>".html_safe, category_path(c.category_id.downcase) %></li>
+						<% } %>
+					</ul>
+				</li>
+				<li class="col">
+					<h6>Apps</h6>
+					<% 
+						app_cat_count = @app_cat.count
+						ctr = 0
+					%>
+					<ul>
+						<% @app_cat.each {|c| %>
+							<li><%= link_to "<span>#{c.category_name}</span>".html_safe, category_path(c.category_id.downcase) %></li>
+
+							<% ctr += 1 %>
+							<% if ctr == app_cat_count/2 %>
+					</ul>
+				</li>
+				<li class="col">
+					<h6>&nbsp;</h6>
+					<ul>		
+							<% end %>
+						<% } %>
+					</ul>
+				</li>
+			</ul>
+			<!-- ENDS footer-cols -->
+
+			<!-- Bottom -->
+			<div id="bottom">
+				&copy; <%= link_to Rails.application.class.parent_name, "/" %> all rights reserved
+
+				<div id="to-top" class="poshytip" title="To top"></div>
+
+			</div>
+			<!-- ENDS Bottom -->
+		</div>
+		<!-- ENDS FOOTER -->
+
+	</div>
+	<!-- ENDS WRAPPER -->
+
+	</body>
+
+</html>

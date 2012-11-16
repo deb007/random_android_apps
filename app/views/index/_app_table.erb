@@ -1,0 +1,16 @@
+<table>
+	<tbody>
+		<tr>
+			<th colspan='2'>Random Free Apps</th>
+		</tr>
+	<% tabledata.each {|fa| %>
+		<tr>
+			<td>
+				<%= image_tag fa.img, :alt=>fa.appname, :title=>fa.appname, :width=>78, :height=>78 %>
+			</td>
+			<td valign="top"><%= link_to fa.appname, "https://play.google.com#{fa.url}", :target => "_blank" %><br>
+				<%= fa.desc %></td>
+		</tr>
+	<% } %>
+	</tbody>
+</table>
