@@ -22,7 +22,7 @@ class IndexController < ApplicationController
 		@page_subtitle = "to #{Rails.application.class.parent_name}"
 
 		@random_free_apps = AppRank.find(:all, :select=>"*", :conditions=>"", :joins=> 'LEFT JOIN apps ON app_ranks.app_id=apps.id', 
-			:group => 'apps.id', :order => 'rand()', :limit => 10)
+			:group => 'apps.id', :order => 'random()', :limit => 10)
 
 		
 	end
