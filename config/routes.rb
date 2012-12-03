@@ -1,6 +1,7 @@
 RandomAndroidApps::Application.routes.draw do
 
   get "apps/import"
+  get "categories/import"
   resources :categories do
     member do
       get :hover
