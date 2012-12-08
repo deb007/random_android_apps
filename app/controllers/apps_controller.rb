@@ -6,7 +6,7 @@ class AppsController < ApplicationController
 			agent.user_agent_alias = 'Mac Safari'
 		}
 
-		categories = Category.where("id <= 101")
+		categories = Category.where("id >= 1 AND id <= 101")
 		categories.each{|cat|
 			pagectr		= 1
 			perpage 	= 24

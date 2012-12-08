@@ -14,6 +14,7 @@ RandomAndroidApps::Application.routes.draw do
 
   resources :apps do
   end
+  resources :companies, :only=>'show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

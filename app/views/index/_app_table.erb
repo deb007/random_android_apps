@@ -3,12 +3,24 @@
 		<tr>
 			<th colspan='2'>Random Free Apps</th>
 		</tr>
+	<% ctr = 0 %>
 	<% tabledata.each {|fa| %>
+		<% 
+			ctr += 1
+			cats = AppCategory.find_all_by_app_id(fa.app_id)
+			company = Companies.find(fa.company_id) 
+		%>
 		<tr>
 			<td>
-				<%= image_tag fa.img, :alt=>fa.appname, :title=>fa.appname, :width=>78, :height=>78 %>
+				<div id="img<%= ctr %>"><%= image_tag fa.img, :alt=>fa.appname, :title=>fa.appname, :width=>78, :height=>78 %></div>
 			</td>
-			<td valign="top"><%= link_to fa.appname, "https://play.google.com#{fa.url}", :target => "_blank" %><br>
+			<td valign="top"><%= link_to fa.appname, "https://play.google.com#{fa.url}", :target => "_blank" %>
+				<% cats.each { |c|  %>
+					<% cat = Category.find(c.category_id) %>
+					<%= link_to cat.category_name, category_path(cat.category_id.downcase), {:class=>"category", :style=>"color:#fff;"} %>
+				<% } %>
+				<br>
+				<%= link_to company.company_name, company_path(company.id) %><br>
 				<%= fa.desc %></td>
 		</tr>
 	<% } %>

@@ -55,8 +55,9 @@ class CategoriesController < ApplicationController
 		else
 			catid = c.id
 
-			@random_free_apps = AppRank.find(:all, :select=>"*", :conditions=>"category_id = #{catid}", :joins=> 'LEFT JOIN apps ON app_ranks.app_id=apps.id', 
-			:group => 'apps.id', :order => 'random()', :limit => 10)
+			@random_free_apps = Apps.find(:all, :select=>"*", :conditions=>"category_id = #{catid}", 
+				:joins=> 'LEFT JOIN app_categories ON app_categories.app_id=apps.id',  :order => 'random()', :limit => 10)
+
 
 		end
 	end

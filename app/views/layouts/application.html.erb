@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title><%= Rails.application.class.parent_name %> - Trends for all the free Android apps in Google Play</title>
+		<title><%= Rails.application.class.parent_name %> - Random free Android apps in Google Play :: <%= @page_title %></title>
 		  <%= stylesheet_link_tag    "style", "social-icons", :media => "all" %>
 		  <%= javascript_include_tag "jquery-1.5.1.min", "jquery-ui-1.8.13.custom.min", "easing", "jquery.scrollTo-1.4.2-min", "quicksand", "jquery.cycle.all", "custom" %>
 
@@ -150,18 +150,26 @@
 					<span class="subtitle"><%= @page_subtitle %></span>
 				</div>
 				<!-- ENDS title -->
+				<% if params[:controller] != "companies" %>
+				<div class="posts" style="padding:0px 10px 10px 10px;">The huge collection of android apps on the Google Play website is mesmerising. Its easy to get lost in the sea of apps. Sometimes you might feel that you would like to browse random apps from the Google Play market.<br>
+				So, here you are... Discover 10 completely <b>Random Free Android Apps</b> from the Google Play Market.
+	        	</div>
+	        	<% end %>
 				<%= render :partial => "layouts/adsense"  %>
 				<!-- page-content -->
 					<%= yield %>
 				<!-- ENDS page-content -->
 
+				<% if params[:controller] != "companies" %>
 				<div id="page-content">
 					
 					<div>
-					<h4 class="line-divider"><center><%= link_to "Reload this page", "javascript:location.reload();" %> to receive more free random android apps</center></h4>
+					<center><h4 class="line-divider"><%= link_to "Reload this page", "javascript:location.reload();" %> to receive more free random android apps</h4><br>Or, choose from amongst the below categories to refine the random apps.</center>
 		        	</div>
 
 				</div>
+	        	<% end %>
+
 				<%= render :partial => "layouts/adsense"  %>
 				<br><br>
 

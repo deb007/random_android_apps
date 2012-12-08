@@ -21,7 +21,8 @@ class IndexController < ApplicationController
 		@page_title = "Welcome"
 		@page_subtitle = "to #{Rails.application.class.parent_name}"
 
-		@random_free_apps = Apps.find(:all, :select=>"*", :conditions=>"", :order => 'random()', :limit => 10)
+		@random_free_apps = Apps.find(:all, :select=>"*", :conditions=>"", 
+				:joins=> 'LEFT JOIN app_categories ON app_categories.app_id=apps.id', :order => 'random()', :limit => 10)
 
 		
 	end
