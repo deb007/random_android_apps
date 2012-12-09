@@ -1,0 +1,4 @@
+1. add counts against company/categories
+2. add icon for google play
+3. add click count
+4. ajax load for images

@@ -20,7 +20,7 @@
 					<%= link_to cat.category_name, category_path(cat.category_id.downcase), {:class=>"category", :style=>"color:#fff;"} %>
 				<% } %>
 				<br>
-				<%= link_to company.company_name, company_path(company.id) %><br>
+				<%= link_to company.company_name, company_path(company.id), {:class=>"company", :style=>"color:#000;"} %><br>
 				<%= fa.desc %></td>
 		</tr>
 	<% } %>
