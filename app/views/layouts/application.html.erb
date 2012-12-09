@@ -219,8 +219,10 @@
 			<!-- ENDS footer-cols -->
 
 			<!-- Bottom -->
-			<div id="bottom">
-				&copy; <%= link_to Rails.application.class.parent_name, "/" %> all rights reserved
+			<div id="bottom" style="line-height:23px;">
+				&copy; <%= link_to Rails.application.class.parent_name, "/" %> all rights reserved.
+				<br>Note: <%= link_to Rails.application.class.parent_name, "/" %> is in no way affiliated to Google Play and does not store any Google Play android apps on its servers.<br>
+				<%= link_to Rails.application.class.parent_name, "/" %> simply provides its users links to random Google Play apps.
 
 				<div id="to-top" class="poshytip" title="To top"></div>
 
@@ -231,7 +233,19 @@
 
 	</div>
 	<!-- ENDS WRAPPER -->
+<script type="text/javascript">
 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-414665-13']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 	</body>
 
 </html>
