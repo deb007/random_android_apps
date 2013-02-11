@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.20'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,6 +11,7 @@ gem 'pg'
 gem 'thin'
 gem 'jquery-rails', '1.0.19'
 gem 'mechanize', '2.5.1'
+gem 'newrelic_rpm'
 #gem 'devise', '1.5.3'
 
 

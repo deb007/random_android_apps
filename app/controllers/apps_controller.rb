@@ -68,7 +68,7 @@ class AppsController < ApplicationController
 							p cat[:id]
 							p pagectr
 						end
-						AppRank.create(:app_id => app_id, :category_id => cat[:id], :rank => ctr)
+						#AppRank.create(:app_id => app_id, :category_id => cat[:id], :rank => ctr)
 
 						ctr += 1
 
